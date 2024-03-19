@@ -1,0 +1,19 @@
+﻿<Window x:Class="Uchebka1.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Uchebka1"
+        mc:Ignorable="d"
+        Title="Window1" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="CustomersDataGrid"/>
+        <ComboBox x:Name="CustomerComboBox" HorizontalAlignment="Center" Margin="0,224,0,0" VerticalAlignment="Top" Width="112" Height="26" SelectionChanged="CustomersComboBox_SelectionChanged"/>
+        <Button x:Name="NextTable2" Content="NextTable" HorizontalAlignment="Left" Margin="678,215,0,0" VerticalAlignment="Top" Height="40" Width="112" Click="NextTable2_Click" Background="#FFC15CE5"/>
+        <Button x:Name="LastTable2" Content="LastTable" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" Height="40" Width="112" Click="LastTable2_Click" Background="#FFC15CE5"/>
+        <TextBox x:Name="FirstNameTbx" HorizontalAlignment="Center" Margin="0,262,0,0" TextWrapping="Wrap" Text="Имя клиента" VerticalAlignment="Top" Width="780" Height="23"/>
+        <Button x:Name="CreateBtn" Content="Добавить" HorizontalAlignment="Center" Margin="0,290,0,0" VerticalAlignment="Top" Width="780" Height="42" Click="CreateBtn_Click" Background="#FF2AE580"/>
+        <Button x:Name="UpdateBtn" Content="Изменить" HorizontalAlignment="Center" Margin="0,332,0,0" VerticalAlignment="Top" Width="780" Height="42" Background="#FF36D4DA" Click="UpdateBtn_Click"/>
+        <Button x:Name="DeleteBtn" Content="Удалить" HorizontalAlignment="Center" Margin="0,374,0,0" VerticalAlignment="Top" Width="780" Height="42" Background="#FFD6441C" Click="DeleteBtn_Click"/>
+    </Grid>
+</Window>

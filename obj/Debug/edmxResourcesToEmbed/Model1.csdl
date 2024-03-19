@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarRentalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cars">
+    <Key>
+      <PropertyRef Name="ID_Car" />
+    </Key>
+    <Property Name="ID_Car" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Rentals" Relationship="Self.FK__Rentals__Car_ID__5CD6CB2B" FromRole="Cars" ToRole="Rentals" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="ID_Customer" />
+    </Key>
+    <Property Name="ID_Customer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Rentals" Relationship="Self.FK__Rentals__Custome__5DCAEF64" FromRole="Customers" ToRole="Rentals" />
+  </EntityType>
+  <EntityType Name="Rentals">
+    <Key>
+      <PropertyRef Name="ID_Rental" />
+    </Key>
+    <Property Name="ID_Rental" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Car_ID" Type="Int32" />
+    <Property Name="Customer_ID" Type="Int32" />
+    <Property Name="RentalDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TotalCost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK__Rentals__Car_ID__5CD6CB2B" FromRole="Rentals" ToRole="Cars" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK__Rentals__Custome__5DCAEF64" FromRole="Rentals" ToRole="Customers" />
+  </EntityType>
+  <Association Name="FK__Rentals__Car_ID__5CD6CB2B">
+    <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+    <End Role="Rentals" Type="Self.Rentals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="ID_Car" />
+      </Principal>
+      <Dependent Role="Rentals">
+        <PropertyRef Name="Car_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rentals__Custome__5DCAEF64">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="Rentals" Type="Self.Rentals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="ID_Customer" />
+      </Principal>
+      <Dependent Role="Rentals">
+        <PropertyRef Name="Customer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarRentalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cars" EntityType="Self.Cars" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" />
+    <EntitySet Name="Rentals" EntityType="Self.Rentals" />
+    <AssociationSet Name="FK__Rentals__Car_ID__5CD6CB2B" Association="Self.FK__Rentals__Car_ID__5CD6CB2B">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="Rentals" EntitySet="Rentals" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rentals__Custome__5DCAEF64" Association="Self.FK__Rentals__Custome__5DCAEF64">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Rentals" EntitySet="Rentals" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
